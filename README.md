@@ -16,7 +16,9 @@ This project utilizes Axios to consume the Rick and Morty API, presenting a simp
 * CSS3
 
 ## Start
-
+- Clone the repository
+- Open the `index.html` file on your web browser
+- No additional installations or setup are required
 
 ## Purpose
 This project serves as both a practical demonstration of consuming a RESTful API using Axios and a fun showcase of the diverse Rick and Morty universe. 
