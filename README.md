@@ -1,1 +1,1 @@
-# Rick-and-Morty-Api-Axios-
+# Rick and Morty Api Axios
