@@ -4,13 +4,12 @@ export default function getCharacters() {
     $fragment = d.createDocumentFragment(),
     $cards = d.querySelector(".cards-slides");
 
-  const getAll = async () => {
+  const getCharacters = async () => {
     try {
       let res = await axios.get(
         "https://rickandmortyapi.com/api/character/[1,2,3,4,5,6]"
       );
       let json = await res.data;
-      console.log(res.data);
 
       json.forEach((el) => {
         $template.querySelector(".card-img").src = el.image;
@@ -48,5 +47,5 @@ export default function getCharacters() {
     }
   };
 
-  d.addEventListener("DOMContentLoaded", getAll());
+  d.addEventListener("DOMContentLoaded", getCharacters());
 }

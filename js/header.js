@@ -3,7 +3,7 @@ export default function header() {
 
   window.addEventListener("scroll", (e) => {
     // console.log(window.scrollY);
-    if (window.scrollY > 740) {
+    if (window.scrollY > 90) {
       $header.classList.add("header-scroll");
     } else {
       $header.classList.remove("header-scroll");

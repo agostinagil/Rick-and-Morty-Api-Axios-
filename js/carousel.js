@@ -8,17 +8,20 @@ export async function carousel() {
 
   d.addEventListener("click", (e) => {
     const $cards = d.querySelectorAll(".card");
+    // console.log($cards);
 
-    console.log($cards);
     if (e.target === $prevBtn) {
       e.preventDefault();
-      $cards[i];
+
+      $cards[i].classList.add("prev");
       $cards[i].classList.remove("active");
       i--;
 
       if (i < 0) {
         i = $cards.length - 1;
+        $cards.forEach((card) => card.classList.remove("prev"));
       }
+      $cards[i].classList.remove("prev");
 
       $cards[i].classList.add("active");
     }
@@ -26,13 +29,16 @@ export async function carousel() {
     if (e.target === $nextBtn) {
       e.preventDefault();
 
+      $cards[i].classList.add("prev");
       $cards[i].classList.remove("active");
       i++;
 
       if (i >= $cards.length) {
         i = 0;
+        $cards.forEach((card) => card.classList.remove("prev"));
       }
 
+      $cards[i].classList.remove("prev");
       $cards[i].classList.add("active");
     }
   });
