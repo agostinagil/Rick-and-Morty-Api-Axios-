@@ -5,6 +5,7 @@
   --fourth-color: #f0f3e7;
   --fifth-color: #334f53;
   --white: #f0f3e8;
+  --header-height: 5rem;
 }
 
 html {
@@ -38,7 +39,7 @@ header {
   z-index: 999;
   position: fixed;
   width: 100%;
-  max-height: 5rem;
+  max-height: var(--header-height);
   transition: all 0.3s ease-in-out;
 }
 

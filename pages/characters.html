@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/characters.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <img src="../assets/rick_and_morty_title.png" alt="Rick and Morty" />
+      </a>
+      <nav class="header-nav">
+        <ul class="header-nav-ul">
+          <li><a href="#characters">Characters</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+
+        <input type="search" id="search-header" placeholder="Search" />
+      </nav>
+      <ul class="ul-header"></ul>
+    </header>
+    <section class="all-characters">
+      <h1>Characters</h1>
+      <div class="characters-cards"></div>
+    </section>
+
+    <template id="card-template">
+      <div class="character-card">
+        <img class="character-card-img" />
+        <div class="character-card-body">
+          <h5 class="character-card-title"></h5>
+          <p class="character-card-about" id="specie"></p>
+          <p class="character-card-about">Location:</p>
+          <p class="character-card-about" id="location"></p>
+        </div>
+        <a class="character-card-btn"> See more</a>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script src="../js/characters.js" type="module"></script>
+  </body>
+</html>

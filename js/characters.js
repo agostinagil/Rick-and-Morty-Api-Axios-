@@ -1,51 +1,38 @@
-export default function getCharacters() {
-  const d = document,
-    $template = d.getElementById("card-template").content,
-    $fragment = d.createDocumentFragment(),
-    $cards = d.querySelector(".cards-slides");
+import getAllCharacters from "./getAllCharacters.js";
+import header from "./header.js";
+import searchBar from "./search_bar.js";
 
-  const getCharacters = async () => {
-    try {
-      let res = await axios.get(
-        "https://rickandmortyapi.com/api/character/[1,2,3,4,5,6]"
-      );
-      let json = await res.data;
+const d = document;
 
-      json.forEach((el) => {
-        $template.querySelector(".card-img").src = el.image;
-        $template.querySelector(".card-title").textContent = el.name;
-        $template.querySelector(".card-img").alt = el.name;
-        $template.querySelector("#specie").textContent = el.species;
-        $template.querySelector("#location").textContent = el.location.name;
-        if (el.status === "Alive") {
-          $template.querySelector("#status").classList.remove("unknown");
-          $template.querySelector("#status").classList.remove("dead");
-          $template.querySelector("#status").classList.add("alive");
-          // console.log("alive");
-        } else if (el.status === "Dead") {
-          $template.querySelector("#status").classList.remove("alive");
-          $template.querySelector("#status").classList.remove("unknown");
-          $template.querySelector("#status").classList.add("dead");
-          // console.log("dead", el.status);
-        } else {
-          $template.querySelector("#status").classList.remove("alive");
-          $template.querySelector("#status").classList.remove("dead");
-          $template.querySelector("#status").classList.add("unknown");
-          console.log("unknown");
-        }
+const $template = d.getElementById("card-template").content,
+  $cards = d.querySelector(".characters-cards"),
+  $fragment = d.createDocumentFragment();
 
-        let $clone = d.importNode($template, true);
+const listOfCharacters = async () => {
+  try {
+    const characters = await getAllCharacters();
 
-        $fragment.appendChild($clone);
-      });
-      $cards.appendChild($fragment);
+    characters.forEach((character) => {
+      $template.querySelector(".character-card-img").src = character.image;
+      $template.querySelector(".character-card-img").alt = character.name;
+      $template.querySelector(".character-card-title").textContent =
+        character.name;
+      $template.querySelector("#specie").textContent = character.species;
+      $template.querySelector("#location").textContent = character.location;
+      $template.querySelector(".character-card-btn").href = character.image;
+      $template.querySelector(".character-card-btn").target = "_blank";
 
-      let firstCharacter = $cards.firstElementChild;
-      firstCharacter.classList.add("active");
-    } catch (err) {
-      console.error("Error al obtener los datos:", err);
-    }
-  };
+      let $clone = d.importNode($template, true);
+      $fragment.appendChild($clone);
+    });
+    $cards.appendChild($fragment);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  d.addEventListener("DOMContentLoaded", getCharacters());
-}
+document.addEventListener("DOMContentLoaded", () => {
+  header();
+  searchBar();
+  listOfCharacters();
+});

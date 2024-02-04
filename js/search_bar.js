@@ -1,27 +1,28 @@
 const d = document;
+import getAllCharacters from "./getAllCharacters.js";
 
 export default function searchBar() {
   const $searchBar = d.querySelector("#search-header"),
     $resultsList = d.querySelector(".ul-header"),
     $link = d.querySelector(".ul-link");
 
-  const getAll = async () => {
-    try {
-      let res = await axios.get("https://rickandmortyapi.com/api/character/");
-      let json = await res.data.results;
+  //   const getAll = async () => {
+  //     try {
+  //       let res = await axios.get("https://rickandmortyapi.com/api/character/");
+  //       let json = await res.data.results;
 
-      //   let names = json.map((el) => el.name);
-      //   return names;
-      let charactersNameId = json.map((character) => ({
-        id: character.id,
-        name: character.name,
-      }));
+  //       //   let names = json.map((el) => el.name);
+  //       //   return names;
+  //       let charactersNameId = json.map((character) => ({
+  //         id: character.id,
+  //         name: character.name,
+  //       }));
 
-      return charactersNameId;
-    } catch (err) {
-      console.error("Error al obtener los datos:", err);
-    }
-  };
+  //       return charactersNameId;
+  //     } catch (err) {
+  //       console.error("Error al obtener los datos:", err);
+  //     }
+  //   };
 
   const updateList = async () => {
     const searchTerm = $searchBar.value.toLowerCase().trim();
@@ -32,21 +33,28 @@ export default function searchBar() {
       return;
     }
 
-    const characters = await getAll();
+    const characters = await getAllCharacters();
+    let matchFound = false;
 
     characters.forEach((character) => {
-      console.log(character.name);
       if (character.name.toLowerCase().includes(searchTerm)) {
-        const listItem = document.createElement("li");
-        const link = d.createElement("a");
-        link.classList.add("link-searchbar");
-        link.textContent = character.name;
-        link.href = `https://rickandmortyapi.com/api/character/${character.id}`;
-        link.target = "_blank";
-        listItem.appendChild(link);
-        $resultsList.appendChild(listItem);
+        matchFound = true;
+        const $listItem = document.createElement("li");
+        const $link = d.createElement("a");
+        $link.classList.add("link-searchbar");
+        $link.textContent = character.name;
+        $link.href = `https://rickandmortyapi.com/api/character/${character.id}`;
+        $link.target = "_blank";
+        $listItem.appendChild($link);
+        $resultsList.appendChild($listItem);
       }
     });
+
+    if (!matchFound) {
+      const $noMatch = d.createElement("li");
+      $noMatch.textContent = "No hay coincidencias";
+      $resultsList.appendChild($noMatch);
+    }
 
     $resultsList.style.display = "block"; // show name list
   };
