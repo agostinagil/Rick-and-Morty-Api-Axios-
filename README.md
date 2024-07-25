@@ -22,6 +22,6 @@ This project utilizes Axios to consume the Rick and Morty API, presenting a simp
 
 ## Purpose
 This project serves as both a practical demonstration of consuming a RESTful API using Axios and a fun showcase of the diverse Rick and Morty universe. 
-   git clone https://github.com/agostinagil/Rick-and-Morty-Api-Axios-
+   git clone https://github.com/agostinagil/rick-and-morty-axios
    open the `index.html` file in your web browser
    No additional installations or setup are required 

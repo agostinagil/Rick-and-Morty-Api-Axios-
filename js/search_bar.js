@@ -52,7 +52,7 @@ export default function searchBar() {
 
     if (!matchFound) {
       const $noMatch = d.createElement("li");
-      $noMatch.textContent = "No hay coincidencias";
+      $noMatch.textContent = "No matches";
       $resultsList.appendChild($noMatch);
     }
 
